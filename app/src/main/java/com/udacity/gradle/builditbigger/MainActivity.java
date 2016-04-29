@@ -8,15 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.JokeTeller;
 import com.example.bard.BardActivity;
 
-import java.io.IOException;
 
+public class MainActivity extends AppCompatActivity implements JokeListener{
 
-public class MainActivity extends AppCompatActivity {
-
-    EndpointsAsyncTask endpointsAsyncTask;
+    JokeAsyncTask jokeAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,30 +45,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        if(endpointsAsyncTask == null || endpointsAsyncTask.getStatus() == AsyncTask.Status.FINISHED) {
-            endpointsAsyncTask = new EndpointsAsyncTask();
-            endpointsAsyncTask.execute();
-        }
-    }
-
-    private class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-            try {
-                return JokeTeller.getJoke();
-            } catch (IOException e) {
-                return e.getMessage();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Intent intent = BardActivity.getBardActivityIntent(MainActivity.this, result);
-
-            startActivity(intent);
+        if(jokeAsyncTask == null || jokeAsyncTask.getStatus() == AsyncTask.Status.FINISHED) {
+            jokeAsyncTask = new JokeAsyncTask(this);
+            jokeAsyncTask.execute();
         }
     }
 
 
+    @Override
+    public void onJokeLoaded(String joke) {
+        Intent intent = BardActivity.getBardActivityIntent(this, joke);
+
+        startActivity(intent);
+    }
 }
