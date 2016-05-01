@@ -6,6 +6,7 @@
 
 package com.udacity.gradle.builditbigger.backend;
 
+import com.example.JokeTeller;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -33,19 +34,10 @@ public class MyEndpoint {
      */
     @ApiMethod(name = "joke", path = "joke")
     public MyBean sayJoke() {
-        String[] jokes = new String[]{
-                "A SQL query goes into a bar, walks up to two tables and asks, \"Can I join you?\"",
-                "When your hammer is C++, everything begins to look like a thumb.",
-                "Programming is like sex:\n" +
-                        "One mistake and you have to support it for the rest of your life."
-        };
-
-        int selectedJokeIndex = new Random().nextInt(jokes.length);
-
-        String selectedJoke = jokes[selectedJokeIndex];
+        String joke = JokeTeller.getRandomJoke();
 
         MyBean response = new MyBean();
-        response.setData(selectedJoke);
+        response.setData(joke);
 
         return response;
     }

@@ -38,7 +38,7 @@ task runAndroidTests {
 }
 
 task stopAppEngine {
-    shouldRunAfter 'runAndroidTests'
+    mustRunAfter 'runAndroidTests'
     dependsOn ':backend:appengineStop'
     doLast {
         println "Server stopped"

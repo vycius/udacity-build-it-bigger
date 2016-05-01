@@ -30,7 +30,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':joketeller')
+    compile project(path: ':backend', configuration: 'android-endpoints')
     compile project(':bard')
     compile 'com.android.support:appcompat-v7:23.3.0'
     freeCompile 'com.google.android.gms:play-services-ads:8.4.0'
