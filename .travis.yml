@@ -19,5 +19,6 @@ script:
   - ./gradlew runAppEngineAndTest
 
 env:
-  - GRADLE_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
-  - ADB_INSTALL_TIMEOUT=8
+  global:
+    - GRADLE_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
+    - ADB_INSTALL_TIMEOUT=8
