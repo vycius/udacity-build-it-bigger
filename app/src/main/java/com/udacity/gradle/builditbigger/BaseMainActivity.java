@@ -11,7 +11,7 @@ import android.view.View;
 import com.example.bard.BardActivity;
 
 
-public class MainActivity extends AppCompatActivity implements JokeListener{
+public abstract class BaseMainActivity extends AppCompatActivity implements JokeListener {
 
     JokeAsyncTask jokeAsyncTask;
 
