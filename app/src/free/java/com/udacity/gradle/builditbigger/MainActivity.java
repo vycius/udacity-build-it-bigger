@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
@@ -39,6 +40,14 @@ public class MainActivity extends BaseMainActivity {
                 .build();
 
         mInterstitialAd.loadAd(adRequest);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                loadJoke();
+            }
+        });
     }
 
     @Override

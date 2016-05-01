@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ViewSwitcher;
 
 import com.example.bard.BardActivity;
 
@@ -15,10 +16,14 @@ public abstract class BaseMainActivity extends AppCompatActivity implements Joke
 
     JokeAsyncTask jokeAsyncTask;
 
+    ViewSwitcher mViewSwitcher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mViewSwitcher = (ViewSwitcher) findViewById(R.id.main_view_switcher);
     }
 
 
@@ -45,15 +50,22 @@ public abstract class BaseMainActivity extends AppCompatActivity implements Joke
     }
 
     public void tellJoke(View view) {
+        loadJoke();
+    }
+
+    public void loadJoke() {
         if(jokeAsyncTask == null || jokeAsyncTask.getStatus() == AsyncTask.Status.FINISHED) {
             jokeAsyncTask = new JokeAsyncTask(this);
             jokeAsyncTask.execute();
+            mViewSwitcher.showNext();
         }
     }
 
 
     @Override
     public void onJokeLoaded(String joke) {
+        mViewSwitcher.showNext();
+
         Intent intent = BardActivity.getBardActivityIntent(this, joke);
 
         startActivity(intent);
