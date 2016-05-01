@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 15
@@ -11,17 +10,26 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        paid {
+            applicationId 'com.udacity.gradle.builditbigger.paid'
+        }
+        free {
+            applicationId 'com.udacity.gradle.builditbigger.free'
+        }
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    // Added for AdMob
     compile project(':joketeller')
     compile project(':bard')
     compile 'com.android.support:appcompat-v7:23.3.0'
