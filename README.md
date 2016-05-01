@@ -1,6 +1,7 @@
-# Gradle for Android and Java Final Project
+# Udacity Build It Bigger
+[![Build Status](https://travis-ci.org/vycius/udacity-build-it-bigger.svg?branch=master)](https://travis-ci.org/vycius/udacity-build-it-bigger)
 
-In this project, you will create an app with multiple flavors that uses
+Udacity Build It Bigger - Gradle for Android and Java Final Project. In this project, you will create an app with multiple flavors that uses
 multiple libraries and Google Could Endpoints. The finished app will consist
 of four modules. A Java library that provides jokes, a Google Could Endpoints
 (GCE) project that serves those jokes, an Android Library containing an
